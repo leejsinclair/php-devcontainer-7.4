@@ -7,7 +7,7 @@ echo ""
 
 # Show current status
 echo "📊 Current Status:"
-./switch-php-version.sh status
+/workspace/.devcontainer/scripts/switch-php-version.sh status
 echo ""
 
 echo "Available Actions:"
@@ -26,13 +26,13 @@ read -p "Select an option (1-8): " choice
 case $choice in
     1)
         echo "🔄 Switching to PHP 7.4..."
-        ./switch-php-version.sh php74
+        /workspace/.devcontainer/scripts/switch-php-version.sh php74
         echo ""
         echo "💡 Don't forget to reload VS Code: Ctrl+Shift+P → 'Developer: Reload Window'"
         ;;
     2)
         echo "🔄 Switching to PHP 5.6 settings..."
-        ./switch-php-version.sh php56
+        /workspace/.devcontainer/scripts/switch-php-version.sh php56
         echo ""
         echo "💡 Don't forget to reload VS Code: Ctrl+Shift+P → 'Developer: Reload Window'"
         echo ""
@@ -40,7 +40,7 @@ case $choice in
         echo "   cd php56-setup && ./start-php56.sh"
         ;;
     3)
-        ./switch-php-version.sh status
+        /workspace/.devcontainer/scripts/switch-php-version.sh status
         ;;
     4)
         echo "⚠️  Container management requires HOST terminal!"
@@ -60,11 +60,11 @@ case $choice in
         ;;
     6)
         echo "🧪 Running test in PHP 5.6..."
-        ./run-in-php56.sh version-test-clean.php
+        /workspace/php56-connectivity/run-in-php56.sh version-test-clean.php
         ;;
     7)
         echo "🔍 Testing Docker access..."
-        ./test-docker-access.sh
+        /workspace/php56-connectivity/test-docker-access.sh
         ;;
     8)
         echo "👋 Goodbye!"

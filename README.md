@@ -118,19 +118,19 @@ Switch VS Code between PHP 7.4 and PHP 5.6 for IntelliSense and linting:
 #### Command Line
 ```bash
 # Check current PHP configuration
-./switch-php-version.sh status
+./.devcontainer/scripts/switch-php-version.sh status
 
 # Switch to PHP 5.6 (requires PHP 5.6 container running)
-./switch-php-version.sh php56
+./.devcontainer/scripts/switch-php-version.sh php56
 
 # Switch back to PHP 7.4
-./switch-php-version.sh php74
+./.devcontainer/scripts/switch-php-version.sh php74
 
 # Execute scripts in PHP 5.6 container
-./run-in-php56.sh remote-test.php
+./php56-connectivity/run-in-php56.sh remote-test.php
 
 # Interactive environment manager
-./php-env-manager.sh
+./.devcontainer/scripts/php-env-manager.sh
 ```
 
 #### VS Code Tasks

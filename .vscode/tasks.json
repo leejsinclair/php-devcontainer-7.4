@@ -4,7 +4,7 @@
         {
             "label": "PHP: Switch to PHP 7.4",
             "type": "shell",
-            "command": "./switch-php-version.sh",
+            "command": "./.devcontainer/scripts/switch-php-version.sh",
             "args": [
                 "php74"
             ],
@@ -23,7 +23,7 @@
         {
             "label": "PHP: Switch to PHP 5.6",
             "type": "shell",
-            "command": "./switch-php-version.sh",
+            "command": "./.devcontainer/scripts/switch-php-version.sh",
             "args": [
                 "php56"
             ],
@@ -62,7 +62,7 @@
         {
             "label": "PHP: Check Environment Status",
             "type": "shell",
-            "command": "./switch-php-version.sh",
+            "command": "./.devcontainer/scripts/switch-php-version.sh",
             "args": [
                 "status"
             ],
@@ -131,7 +131,7 @@
         {
             "label": "PHP 5.6: Run Test Script",
             "type": "shell",
-            "command": "./run-in-php56.sh",
+            "command": "./php56-connectivity/run-in-php56.sh",
             "args": [
                 "version-test-clean.php"
             ],
@@ -150,7 +150,7 @@
         {
             "label": "PHP 5.6: Run Current File",
             "type": "shell",
-            "command": "./run-in-php56.sh",
+            "command": "./php56-connectivity/run-in-php56.sh",
             "args": [
                 "${fileBasename}"
             ],
@@ -169,7 +169,7 @@
         {
             "label": "Docker: Test Access",
             "type": "shell",
-            "command": "./test-docker-access.sh",
+            "command": "./php56-connectivity/test-docker-access.sh",
             "group": "test",
             "presentation": {
                 "echo": true,
