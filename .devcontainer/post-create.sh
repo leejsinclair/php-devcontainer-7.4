@@ -11,7 +11,7 @@ echo "vscode user UID: $VSCODE_UID, GID: $VSCODE_GID"
 
 # Create a symbolic link from Apache's document root to our workspace
 sudo rm -rf /var/www/html
-sudo ln -sf /workspace /var/www/html
+sudo ln -sf /workspace/source /var/www/html
 
 # Set up Apache to run with proper permissions
 sudo sed -i "s/User www-data/User vscode/" /etc/apache2/apache2.conf

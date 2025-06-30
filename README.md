@@ -44,6 +44,12 @@ A complete PHP 7.4 development environment with Xdebug 3.x in a VS Code devconta
 - Xdebug 3.1.6 for debugging and profiling
 - Composer for package management
 
+### PHP 5.6 Legacy Testing
+- **Optional PHP 5.6 container** for testing legacy compatibility
+- Located in `php56-setup/` folder with dedicated scripts
+- See `php56-setup/README.md` for setup instructions
+- Allows side-by-side testing of PHP 7.4 vs PHP 5.6
+
 ### VS Code Integration
 - **PHP Debug** extension for Xdebug integration
 - **PHP Intelephense** for intelligent code completion

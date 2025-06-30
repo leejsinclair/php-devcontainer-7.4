@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  # PHP 5.6 container for testing legacy code
+  php56-legacy:
+    image: php:5.6-apache
+    volumes:
+      - ../source:/var/www/html
+    ports:
+      - "8056:80" # Different port to avoid conflicts
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html
+    container_name: php56-legacy
+    # Enable error reporting for development
+    command: >
+      bash -c "
+        echo 'display_errors = On' > /usr/local/etc/php/conf.d/display-errors.ini &&
+        echo 'error_reporting = E_ALL' >> /usr/local/etc/php/conf.d/display-errors.ini &&
+        echo 'log_errors = On' >> /usr/local/etc/php/conf.d/display-errors.ini &&
+        apache2-foreground
+      "
