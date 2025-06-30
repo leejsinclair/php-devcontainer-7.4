@@ -1,0 +1,78 @@
+# Backup option: Use PHP 7.4 which is more stable and better supported
+# (If PHP 5.6 is absolutely required, use the main Dockerfile)
+FROM php:7.4-apache
+
+LABEL maintainer="PHP 7.4 DevContainer (Close to 5.6 compatibility)"
+
+# Prevent interactive prompts during package installation
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Fix Debian Bullseye repositories (PHP 7.4 base image uses Bullseye)
+RUN echo "deb http://archive.debian.org/debian bullseye main" > /etc/apt/sources.list && \
+    echo "deb http://archive.debian.org/debian bullseye-updates main" >> /etc/apt/sources.list && \
+    echo "Acquire::Check-Valid-Until false;" > /etc/apt/apt.conf.d/99-disable-check-valid-until
+
+# Update package list and install dependencies
+RUN apt-get update
+
+RUN apt-get install -y \
+    git \
+    unzip \
+    vim \
+    nano \
+    wget \
+    curl \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    libzip-dev \
+    libicu-dev \
+    libxml2-dev \
+    libxslt1-dev \
+    libbz2-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Configure and install PHP extensions (updated for PHP 7.4)
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) \
+    gd \
+    zip \
+    intl \
+    xml \
+    xsl \
+    bz2 \
+    mysqli \
+    pdo_mysql \
+    opcache
+
+# Install Xdebug 3.1.6 (compatible with PHP 7.4)
+RUN pecl install xdebug-3.1.6 \
+    && docker-php-ext-enable xdebug
+
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Copy custom PHP configuration for PHP 7.4 with Xdebug 3.x
+COPY .devcontainer/php74.ini /usr/local/etc/php/conf.d/99-custom.ini
+
+# Enable Apache modules
+RUN a2enmod rewrite
+
+# Configure Apache
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
+# Create a simple index.php for testing
+RUN echo '<?php phpinfo(); ?>' > /var/www/html/index.php
+
+# Install sudo for the post-create script
+RUN apt-get update && apt-get install -y sudo \
+    && rm -rf /var/lib/apt/lists/*
+
+# Expose port 80 for Apache and 9000 for Xdebug
+EXPOSE 80 9000
+
+# Work directory
+WORKDIR /workspace
+
+# Start Apache in foreground
+CMD ["apache2-foreground"]

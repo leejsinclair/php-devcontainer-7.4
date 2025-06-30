@@ -1,0 +1,55 @@
+{
+  "name": "PHP 7.4 with Xdebug 3.x",
+  "build": {
+    "dockerfile": "Dockerfile.php70",
+    "context": ".."
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": false,
+      "configureZshAsDefaultShell": false,
+      "installOhMyZsh": false,
+      "upgradePackages": false,
+      "username": "vscode",
+      "userUid": "automatic",
+      "userGid": "automatic"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.vscode-json",
+        "xdebug.php-debug",
+        "bmewburn.vscode-intelephense-client",
+        "ms-vscode.remote-containers"
+      ],
+      "settings": {
+        "php.validate.executablePath": "/usr/local/bin/php",
+        "php.debug.executablePath": "/usr/local/bin/php",
+        "intelephense.format.enable": true,
+        "intelephense.environment.phpVersion": "7.4.0",
+        "editor.formatOnSave": true
+      }
+    }
+  },
+  "forwardPorts": [
+    80,
+    9000
+  ],
+  "portsAttributes": {
+    "80": {
+      "label": "Apache Server",
+      "onAutoForward": "notify"
+    },
+    "9000": {
+      "label": "Xdebug",
+      "onAutoForward": "silent"
+    }
+  },
+  "remoteUser": "vscode",
+  "workspaceFolder": "/workspace",
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+  ],
+  "postCreateCommand": ".devcontainer/post-create.sh"
+}
