@@ -49,6 +49,12 @@ A complete PHP 7.4 development environment with Xdebug 3.x in a VS Code devconta
 - Located in `php56-setup/` folder with dedicated scripts
 - See `php56-setup/README.md` for setup instructions
 - Allows side-by-side testing of PHP 7.4 vs PHP 5.6
+- **VS Code Integration**: Switch between PHP 7.4 and PHP 5.6 for IntelliSense and linting
+
+### Docker-in-Docker Support
+- **Docker CLI** available within the devcontainer
+- Execute commands in remote containers from within VS Code
+- Direct access to PHP 5.6 container for script execution
 
 ### VS Code Integration
 - **PHP Debug** extension for Xdebug integration
@@ -105,6 +111,56 @@ composer require vendor/package
 php -m              # List loaded modules
 php --ini          # Show configuration files
 ```
+
+### PHP Version Switching
+Switch VS Code between PHP 7.4 and PHP 5.6 for IntelliSense and linting:
+
+#### Command Line
+```bash
+# Check current PHP configuration
+./switch-php-version.sh status
+
+# Switch to PHP 5.6 (requires PHP 5.6 container running)
+./switch-php-version.sh php56
+
+# Switch back to PHP 7.4
+./switch-php-version.sh php74
+
+# Execute scripts in PHP 5.6 container
+./run-in-php56.sh remote-test.php
+
+# Interactive environment manager
+./php-env-manager.sh
+```
+
+#### VS Code Tasks
+Use the **Command Palette** (`Ctrl+Shift+P` / `Cmd+Shift+P`) and type "Tasks: Run Task":
+
+- **"PHP: Switch to PHP 7.4 (Full Setup)"** - Complete switch to PHP 7.4
+- **"PHP: Switch to PHP 5.6 (Full Setup)"** - Start container and switch to PHP 5.6  
+- **"PHP: Check Environment Status"** - Show current configuration
+- **"PHP 5.6: Run Current File"** - Execute open PHP file in PHP 5.6
+- **"PHP 5.6: Start/Stop Container"** - Manage PHP 5.6 container
+
+#### Keyboard Shortcuts (in devcontainer)
+- **`Ctrl+Alt+7`** - Switch to PHP 7.4
+- **`Ctrl+Alt+5`** - Switch to PHP 5.6 (check container status)
+- **`Ctrl+Alt+S`** - Check environment status
+- **`Ctrl+Alt+R`** - Run current PHP file in PHP 5.6
+- **`F5`** - Run current PHP file in PHP 5.6 (when not debugging)
+
+#### Container Management
+**Note**: PHP 5.6 container start/stop must be done from your **HOST terminal** (not inside devcontainer):
+
+```bash
+# From your HOST terminal in the project directory
+cd php56-setup
+./start-php56.sh   # Start PHP 5.6 container
+./stop-php56.sh    # Stop PHP 5.6 container
+```
+
+**Note**: After switching PHP versions, reload VS Code for changes to take effect:
+- Command Palette → `Developer: Reload Window`
 
 ## Configuration
 

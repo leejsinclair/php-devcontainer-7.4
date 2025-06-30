@@ -1,0 +1,29 @@
+[
+    {
+        "key": "ctrl+7",
+        "command": "workbench.action.tasks.runTask",
+        "args": "PHP: Switch to PHP 7.4 (Full Setup)"
+    },
+    {
+        "key": "ctrl+5",
+        "command": "workbench.action.tasks.runTask",
+        "args": "PHP: Switch to PHP 5.6 (Full Setup)"
+    },
+    {
+        "key": "ctrl+alt+s",
+        "command": "workbench.action.tasks.runTask",
+        "args": "PHP: Check Environment Status"
+    },
+    {
+        "key": "ctrl+alt+r",
+        "command": "workbench.action.tasks.runTask",
+        "args": "PHP 5.6: Run Current File",
+        "when": "inDevContainer && resourceExtname == '.php'"
+    },
+    {
+        "key": "f5",
+        "command": "workbench.action.tasks.runTask",
+        "args": "PHP 5.6: Run Current File",
+        "when": "inDevContainer && resourceExtname == '.php' && !inDebugMode"
+    }
+]

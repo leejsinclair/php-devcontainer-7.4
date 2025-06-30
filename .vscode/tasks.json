@@ -1,0 +1,205 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "PHP: Switch to PHP 7.4",
+            "type": "shell",
+            "command": "./switch-php-version.sh",
+            "args": [
+                "php74"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "detail": "Switch VS Code to use PHP 7.4 for IntelliSense and validation"
+        },
+        {
+            "label": "PHP: Switch to PHP 5.6",
+            "type": "shell",
+            "command": "./switch-php-version.sh",
+            "args": [
+                "php56"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "detail": "Switch VS Code to use PHP 5.6 for IntelliSense and validation (requires PHP 5.6 container)"
+        },
+        {
+            "label": "PHP: Switch to PHP 5.6 (Full Setup)",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "PHP: Switch to PHP 5.6",
+                "_reload-reminder"
+            ],
+            "group": "build",
+            "detail": "Check container status, switch VS Code settings, and remind to reload"
+        },
+        {
+            "label": "PHP: Switch to PHP 7.4 (Full Setup)",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "PHP: Switch to PHP 7.4",
+                "_reload-reminder"
+            ],
+            "group": "build",
+            "detail": "Switch to PHP 7.4 and remind to reload VS Code"
+        },
+        {
+            "label": "PHP: Check Environment Status",
+            "type": "shell",
+            "command": "./switch-php-version.sh",
+            "args": [
+                "status"
+            ],
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "detail": "Show current PHP configuration and container status"
+        },
+        {
+            "label": "PHP 5.6: Start Container",
+            "type": "shell",
+            "command": "echo",
+            "args": [
+                "⚠️  Container management must be done from HOST terminal:",
+                "\n1. Open a terminal on your HOST machine (not in devcontainer)",
+                "\n2. Navigate to your project directory",
+                "\n3. Run: cd php56-setup && ./start-php56.sh",
+                "\n",
+                "\nAlternatively, if Docker-in-Docker is working:",
+                "bash -c 'cd php56-setup && ./start-php56.sh'"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "detail": "Instructions to start the PHP 5.6 legacy container from host"
+        },
+        {
+            "label": "PHP 5.6: Stop Container",
+            "type": "shell",
+            "command": "echo",
+            "args": [
+                "⚠️  Container management must be done from HOST terminal:",
+                "\n1. Open a terminal on your HOST machine (not in devcontainer)",
+                "\n2. Navigate to your project directory",
+                "\n3. Run: cd php56-setup && ./stop-php56.sh",
+                "\n",
+                "\nAlternatively, if Docker-in-Docker is working:",
+                "bash -c 'cd php56-setup && ./stop-php56.sh'"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "detail": "Instructions to stop the PHP 5.6 legacy container from host"
+        },
+        {
+            "label": "PHP 5.6: Run Test Script",
+            "type": "shell",
+            "command": "./run-in-php56.sh",
+            "args": [
+                "version-test-clean.php"
+            ],
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "detail": "Run version-test-clean.php in the PHP 5.6 container"
+        },
+        {
+            "label": "PHP 5.6: Run Current File",
+            "type": "shell",
+            "command": "./run-in-php56.sh",
+            "args": [
+                "${fileBasename}"
+            ],
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "detail": "Run the currently open PHP file in the PHP 5.6 container"
+        },
+        {
+            "label": "Docker: Test Access",
+            "type": "shell",
+            "command": "./test-docker-access.sh",
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "detail": "Test Docker access from within the devcontainer"
+        },
+        {
+            "label": "_reload-reminder",
+            "type": "shell",
+            "command": "echo",
+            "args": [
+                "\n🔄 IMPORTANT: Reload VS Code to apply PHP version changes!",
+                "\n💡 Command Palette (Ctrl+Shift+P) → 'Developer: Reload Window'",
+                "\n   Or press Ctrl+Shift+P and type 'reload'"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false
+            },
+            "problemMatcher": []
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "php.validate.executablePath": "/workspace/php56-wrapper.sh",
+    "php.debug.executablePath": "/workspace/php56-wrapper.sh",
+    "php.suggest.basic": false,
+    "intelephense.environment.phpVersion": "5.6.0",
+    "intelephense.compatibility.correctForBaseClassStaticUnion": false,
+    "intelephense.compatibility.correctForArrayAccessArrayAndTraversableArrayUnionTypes": false,
+    "intelephense.format.enable": true,
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "files.associations": {
+        "*.php": "php"
+    },
+    "emmet.includeLanguages": {
+        "php": "html"
+    }
+}
